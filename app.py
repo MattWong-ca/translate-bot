@@ -1,4 +1,3 @@
-# from flask import Flask
 import os
 from dotenv import load_dotenv
 from farcaster import Warpcast
@@ -6,7 +5,7 @@ from farcaster import Warpcast
 load_dotenv()
 
 client = Warpcast(mnemonic=os.environ.get("MNEMONIC_ENV_VAR"))
-# test
+
 for cast in client.stream_casts():
     # CHANGE TO JUST @TRANSLATE LATER
     if cast and "@translate chinese" in cast.text:
