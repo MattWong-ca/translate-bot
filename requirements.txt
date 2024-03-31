@@ -1,9 +1,11 @@
 annotated-types==0.6.0
+anyio==4.3.0
 bitarray==2.9.2
 canonicaljson==2.0.0
 certifi==2024.2.2
 charset-normalizer==3.3.2
 cytoolz==0.12.3
+distro==1.9.0
 eth-account==0.10.0
 eth-hash==0.7.0
 eth-keyfile==0.8.0
@@ -13,8 +15,12 @@ eth-typing==4.0.0
 eth-utils==4.0.0
 eth_abi==5.0.1
 farcaster==0.7.11
+h11==0.14.0
 hexbytes==0.3.1
+httpcore==1.0.5
+httpx==0.27.0
 idna==3.6
+openai==1.14.3
 parsimonious==0.9.0
 pycryptodome==3.20.0
 pydantic==2.6.4
@@ -24,6 +30,8 @@ python-dotenv==1.0.1
 regex==2023.12.25
 requests==2.31.0
 rlp==4.0.0
+sniffio==1.3.1
 toolz==0.12.1
+tqdm==4.66.2
 typing_extensions==4.10.0
 urllib3==2.2.1
