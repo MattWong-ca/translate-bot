@@ -5,7 +5,7 @@ from farcaster import Warpcast
 load_dotenv()
 
 client = Warpcast(mnemonic=os.environ.get("MNEMONIC_ENV_VAR"))
-# TEST COMMENT
+
 for cast in client.stream_casts():
     # CHANGE TO JUST @TRANSLATE LATER
     if cast and "@translate chinese" in cast.text:
