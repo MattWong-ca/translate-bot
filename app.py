@@ -23,15 +23,14 @@ for cast in warpcastClient.stream_casts():
             # print(response.json()['result'])
 
 
-            # SEND PARENT CAST TEXT TO OPENAI, GET RESPONSE
-            completion = openaiClient.chat.completions.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": context},
-                    {"role": "user", "content": cast.text + ": " + parentCastText}
-                ])
-            print(completion.choices[0].message)
-            # response = warpcastClient.post_cast(text="🦉: {}".format(parentCastText), parent={
+            # UNCOMMENT AFTER DB CODE IS DONE
+            # completion = openaiClient.chat.completions.create(
+            #     model="gpt-3.5-turbo",
+            #     messages=[
+            #         {"role": "system", "content": context},
+            #         {"role": "user", "content": cast.text + ": " + parentCastText}
+            #     ])
+            # response = warpcastClient.post_cast(text=completion.choices[0].message.content, parent={
             #     "fid": 397823,
             #     "hash": cast.hash
             #  })
