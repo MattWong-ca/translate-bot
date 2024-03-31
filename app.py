@@ -19,7 +19,7 @@ for cast in warpcastClient.stream_casts():
                 model="gpt-3.5-turbo",
                 messages=[
                     {"role": "system", "content": context},
-                    {"role": "user", "content": cast.text}
+                    {"role": "user", "content": cast.text + ": " + parentCastText}
                 ])
             print(completion.choices[0].message)
             # response = warpcastClient.post_cast(text="🦉: {}".format(parentCastText), parent={
