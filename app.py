@@ -6,7 +6,7 @@ import requests
 import json
 
 load_dotenv()
-# url = 'http://localhost:3000/api/multiply'
+url = 'http://localhost:3000/api/multiply'
 # data = {'number': 5}
 
 warpcastClient = Warpcast(mnemonic=os.environ.get("MNEMONIC_ENV_VAR"))
@@ -19,8 +19,9 @@ for cast in warpcastClient.stream_casts():
         if cast.parent_hash is not None:
             parentCastText = warpcastClient.get_cast(cast.parent_hash).cast.text
             # SEND USER FID TO DB TO CHECK IF IT'S OVER 10 USES
-            # response = requests.post(url=url, json=data)
-            # print(response.json()['result'])
+            fid = {'number': cast.author.fid}
+            response = requests.post(url=url, json=fid)
+            print(response.json()['result'])
 
 
             # UNCOMMENT AFTER DB CODE IS DONE
