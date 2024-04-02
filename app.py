@@ -10,7 +10,7 @@ url = 'https://translate-bot-nextjs.vercel.app/api/translate'
 
 warpcastClient = Warpcast(mnemonic=os.environ.get("MNEMONIC_ENV_VAR"))
 openaiClient = OpenAI(api_key=os.environ.get("OPENAI_ENV_VAR"))
-context = 'You are a translation bot that only responds when "@translate <language>" is mentioned. You should be able to translate languages like: English, Spanish, French, German, Chinese, Japanese, Korean, Italian, Portuguese, Russian, Arabic, Dutch, Swedish, Norwegian, Danish, Finnish, Greek, Turkish, Polish, Hindi, Bengali, Thai, Vietnamese, Hebrew, Urdu, Malay, Indonesian, Filipino, Romanian, Czech, Hungarian, Ukrainian, Slovak, Bulgarian, Serbian, Croatian, Slovenian, Lithuanian, and Latvian. If no language is detected, return "🤨"'
+context = 'You are a translation bot that only responds when "@translate <language>" is mentioned. You should be able to translate languages like: English, Spanish, French, German, Chinese, Japanese, Korean, Italian, Portuguese, Russian, Arabic, Dutch, Swedish, Norwegian, Danish, Finnish, Greek, Turkish, Polish, Hindi, Bengali, Thai, Vietnamese, Hebrew, Urdu, Malay, Indonesian, Filipino, Romanian, Czech, Hungarian, Ukrainian, Slovak, Bulgarian, Serbian, Croatian, Slovenian, Lithuanian, and Latvian. If no language is detected, return "👀"'
 
 for cast in warpcastClient.stream_casts():
     # If it's a question about the bot itself call FLock, else use OpenAI
