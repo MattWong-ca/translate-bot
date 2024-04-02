@@ -22,7 +22,7 @@ for cast in warpcastClient.stream_casts():
                 "fid": 397823,
                 "hash": cast.hash
              }) 
-    elif cast and "@translate" in cast.text:
+    elif cast and "@translate" in cast.text and cast.author.fid != 397823:
         if cast.parent_hash is not None:
             # SEND USER FID TO DB TO CHECK IF IT'S OVER 10 USES
             # fid = {'number': cast.author.fid}
