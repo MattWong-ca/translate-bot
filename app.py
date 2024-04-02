@@ -6,7 +6,7 @@ import requests
 import json
 
 load_dotenv()
-url = 'http://localhost:3000/api/multiply'
+url = 'http://localhost:3000/api/translate'
 
 warpcastClient = Warpcast(mnemonic=os.environ.get("MNEMONIC_ENV_VAR"))
 openaiClient = OpenAI(api_key=os.environ.get("OPENAI_ENV_VAR"))
