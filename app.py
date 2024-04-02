@@ -15,15 +15,19 @@ context = 'You are a translation bot that only responds when "@translate <langua
 
 for cast in warpcastClient.stream_casts():
     # CHANGE TO JUST @TRANSLATE LATER
-    if cast and "@translate chinese" in cast.text:
+    if cast and "@translate what" in cast.text:
         if cast.parent_hash is not None:
-            parentCastText = warpcastClient.get_cast(cast.parent_hash).cast.text
+            # parentCastText = warpcastClient.get_cast(cast.parent_hash).cast.text
             # SEND USER FID TO DB TO CHECK IF IT'S OVER 10 USES
-            fid = {'number': cast.author.fid}
-            response = requests.post(url=url, json=fid)
-            print(response.json()['result'])
-
-
+            # fid = {'number': cast.author.fid}
+            questionToApi = {'question': cast.text[11:]}
+            response = requests.post(url=url, json=questionToApi)
+            # print(response)
+            # print(response.json()['answer'])
+            # print(response.answer)
+            # print('${}'.format(response.json().answer))
+            # stringg = '${}'.format(response.json())
+            # stringg = response.answer
             # UNCOMMENT AFTER DB CODE IS DONE
             # completion = openaiClient.chat.completions.create(
             #     model="gpt-3.5-turbo",
@@ -35,3 +39,8 @@ for cast in warpcastClient.stream_casts():
             #     "fid": 397823,
             #     "hash": cast.hash
             #  })
+            # FLock code
+            response = warpcastClient.post_cast(text=response.json()['answer'], parent={
+                "fid": 397823,
+                "hash": cast.hash
+             })
