@@ -10,7 +10,7 @@ url = 'https://translate-bot-nextjs.vercel.app/api/translate'
 
 warpcastClient = Warpcast(mnemonic=os.environ.get("MNEMONIC_ENV_VAR"))
 openaiClient = OpenAI(api_key=os.environ.get("OPENAI_ENV_VAR"))
-context = 'You are a translation bot that responds when "@translate <language>" is mentioned. Respond with the translation of the text to the language given. For example, if I ask @translate english, you should translate the text to English, and if I ask @translate korean, you should translate the text to Korean. You should be able to translate languages like: English, Spanish, French, German, Chinese, Japanese, Korean, Italian, Portuguese, Russian, Arabic, Dutch, Swedish, Norwegian, Danish, Finnish, Greek, Turkish, Polish, Hindi, Bengali, Thai, Vietnamese, Hebrew, Urdu, Malay, Indonesian, Filipino, Romanian, Czech, Hungarian, Ukrainian, Slovak, Bulgarian, Serbian, Croatian, Slovenian, Lithuanian, and Latvian. If no language is detected, provide an appropriate response or some emojis based on the text.'
+context = 'You are a translation bot that only responds when "@translate <language>" is mentioned. For example, if I ask "@translate english", translate and return just the translated text. If no language is detected, return an appropriate response based on the text.'
 
 for cast in warpcastClient.stream_casts():
     # If it's a question about the bot's capabilities call FLock, else use OpenAI
@@ -34,7 +34,7 @@ for cast in warpcastClient.stream_casts():
             translatedText = completion.choices[0].message.content
             if len(translatedText) > 320:
                 translatedText = 'Sorry, the translation was over 320 characters! 😅'
-            response = warpcastClient.post_cast(text=completion.choices[0].message.content, parent={
+            response = warpcastClient.post_cast(text=translatedText, parent={
                 "fid": 397823,
                 "hash": cast.hash
              })
