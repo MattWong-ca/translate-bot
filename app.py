@@ -31,6 +31,9 @@ for cast in warpcastClient.stream_casts():
                     {"role": "system", "content": context},
                     {"role": "user", "content": cast.text + ": " + parentCastText}
                 ])
+            translatedText = completion.choices[0].message.content
+            if len(translatedText) > 320:
+                translatedText = 'Sorry, the translation was over 320 characters! 😅'
             response = warpcastClient.post_cast(text=completion.choices[0].message.content, parent={
                 "fid": 397823,
                 "hash": cast.hash
