@@ -12,14 +12,10 @@ A translation bot removing language barriers on the Farcaster client, Warpcast. 
 <br>
 <br>
 Examples:
-<br>
-    - `@translate spanish`
-    <br>
-    - `@translate to English`
-    <br>
-    - `@translate what is translate bot?`
-    <br>
-    - `@translate what languages can you translate?`
+- `@translate spanish`
+- `@translate to English`
+- `@translate what is translate bot?`
+- `@translate what languages can you translate?`
     <br>
     <br>
 <!-- INSERT IMAGE HERE -->
@@ -39,13 +35,18 @@ Many users having been asking for a translation feature, which is why I built Tr
 <br>
 ➔ OpenAI: for translating the actual text into the desired language
 <br>
-➔ FLock.io: for answering questions about the bot itself, like what it does and what languages it translates
+➔ FLock.io: for answering questions about the bot itself, like what it does or what languages it translates
 <br>
 
 When a user tags `@translate`, the farcaster-py SDK will detect the cast. This cast has a `cast.text` property, and the `cast.parent_hash` property can be used to retrieve the parent cast's text. Both of these are either passed into OpenAI's API or FLock's API. 
 <br>
-If it's a question about the bot itself, like "what is translate bot?" or "what languages can you translate?", the AI model I created through FLock will have enough context to answer accurately. I send a request to this API by using Axios in the [Nextjs repo](https://github.com/MattWong-ca/translate-bot-nextjs). If it's a translation query, OpenAI's API will translate the text and provide a response. 
+<br>
+If it's a question about the bot itself, like "what is translate bot?" or "what languages can you translate?", the AI model I created through FLock will have enough context to answer accurately. I send a request to this API by using Axios in the [Next.js repo](https://github.com/MattWong-ca/translate-bot-nextjs). If it's a translation query, OpenAI's API will translate the text and provide a response. 
+<br>
 <br>
 Once I get the response back, I again use the farcaster-py SDK to help post an instant reply. If the text is over 320 characters, I set it to return a default phrase.
 
 # 🗺️ Road Map
+1. Cast Actions: using the recently-released cast actions to make the bot a 2-click UX
+2. Neynar APIs: use their webhooks and APIs for easier bot maintenance, and use Frames to gamify the UX
+3. OpenAI/FLock: finetune the AI models and provide better data/prompts for more accurate responses
