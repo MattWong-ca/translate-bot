@@ -22,7 +22,7 @@ for cast in warpcastClient.stream_casts():
                 "fid": 397823,
                 "hash": cast.hash
              }) 
-    elif cast and "@translate" in cast.text and cast.author.fid != 397823:
+    elif cast and cast.text.startswith("@translate") and cast.author.fid != 397823:
         if cast.parent_hash is not None:
             parentCastText = warpcastClient.get_cast(cast.parent_hash).cast.text
             completion = openaiClient.chat.completions.create(
