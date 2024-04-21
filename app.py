@@ -25,11 +25,14 @@ for cast in warpcastClient.stream_casts():
     elif cast and cast.text.startswith("@translate") and cast.author.fid != 397823:
         if cast.parent_hash is not None:
             parentCastText = warpcastClient.get_cast(cast.parent_hash).cast.text
+            targetLanguage = cast.text[len("@translate "):].strip()
+            if len(targetLanguage) == 0:
+                targetLanguage = "English"
             completion = openaiClient.chat.completions.create(
                 model="gpt-3.5-turbo",
                 messages=[
                     {"role": "system", "content": context},
-                    {"role": "user", "content": "Translate this text to " + cast.text[len("@translate "):] + ": " + parentCastText}
+                    {"role": "user", "content": "Translate this text to " + targetLanguage + ": " + parentCastText}
                 ])
             translatedText = completion.choices[0].message.content
             if len(translatedText) > 320:
