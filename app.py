@@ -36,7 +36,7 @@ for cast in warpcastClient.stream_casts():
                 ])
             translatedText = completion.choices[0].message.content
             if len(translatedText) > 320:
-                partOne = translatedText[:320]
+                partOne = translatedText[:319]
                 response = warpcastClient.post_cast(text=partOne, parent={
                     "fid": 397823,
                     "hash": cast.hash
