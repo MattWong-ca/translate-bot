@@ -41,11 +41,11 @@ for cast in warpcastClient.stream_casts():
                     "fid": 397823,
                     "hash": cast.hash
                 })
-                partTwo = translatedText[320:]
-                responseTwo = warpcastClient.post_cast(text=partTwo, parent={
-                    "fid": 397823,
-                    "hash": response.cast.hash
-                })
+                # partTwo = translatedText[320:]
+                # responseTwo = warpcastClient.post_cast(text=partTwo, parent={
+                #     "fid": 397823,
+                #     "hash": response.cast.hash
+                # })
             else:
                 response = warpcastClient.post_cast(text=translatedText, parent={
                     "fid": 397823,
