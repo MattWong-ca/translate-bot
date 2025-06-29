@@ -10,6 +10,7 @@ url = 'https://translate-bot-nextjs.vercel.app/api/translate'
 
 warpcastClient = Warpcast(mnemonic=os.environ.get("MNEMONIC_ENV_VAR"))
 openaiClient = OpenAI(api_key=os.environ.get("OPENAI_ENV_VAR"))
+neynarApiKey = os.environ.get("NEYNAR_API_KEY")
 context = 'You are a translation bot that translates text to a requested language. Only respond with the translated text. If no language is detected, ask the user to retry with a language.'
 
 for cast in warpcastClient.stream_casts():
@@ -24,7 +25,16 @@ for cast in warpcastClient.stream_casts():
              }) 
     elif cast and cast.text.startswith("@translate") and cast.author.fid != 397823:
         if cast.parent_hash is not None:
-            parentCastText = warpcastClient.get_cast(cast.parent_hash).cast.text
+            # Use Neynar API instead of get_cast()
+            url = "https://api.neynar.com/v2/farcaster/cast/"
+            querystring = {"identifier": cast.parent_hash, "type": "hash"}
+            headers = {
+                "x-api-key": neynarApiKey,
+                "x-neynar-experimental": "false"
+            }
+            response = requests.get(url, headers=headers, params=querystring)
+            parentCastText = response.json()['cast']['text']
+            
             targetLanguage = cast.text[len("@translate "):].strip()
             if len(targetLanguage) == 0:
                 targetLanguage = "English"
