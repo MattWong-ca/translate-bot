@@ -46,7 +46,7 @@ for cast in warpcastClient.stream_casts():
                 ])
             translatedText = completion.choices[0].message.content
             if len(translatedText) > 320:
-                translatedText = 'Sorry, the translation was over 320 characters! 😅 \n\nInstall this mini app instead:\nhttps://translate-mini-app.vercel.app'
+                translatedText = 'Sorry, the translation was over 320 characters! 😅 \n\nInstall this mini app instead:\nhttps://farcaster.xyz/mtt/0x269fc24c'
             response = warpcastClient.post_cast(text=translatedText, parent={
                 "fid": 397823,
                 "hash": cast.hash
